@@ -1,0 +1,60 @@
+package formacaofcamara;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author cipri
+ */
+public class Exercicio1 {
+
+    /**
+     * @param args the command line arguments
+     */ 
+    public static double percent(int diff){
+        if (diff == 0){
+            return 0.015;
+        }
+        if (diff == 1){
+            return 2*percent(diff-1);
+        }else{
+            return 2 * percent(diff-1);
+        }
+    }
+   
+    public static double raisePercent(int diff){
+        if (diff == 0){
+            return 1000 * 0.015+ 1000;
+        }else{
+            return raisePercent(diff-1) + raisePercent(diff-1)* percent(diff);
+        }
+    }
+    public static double defineSalary(int year){
+        if (year == 2005){
+             return 1000;
+        }
+        
+        int dateDiff = year - 2006;
+        
+        return raisePercent(dateDiff);
+    }
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+            System.out.println("Digite o Ano que deseja realizar a consulta no salário: ");
+            Scanner input = new Scanner(System.in);
+            int year = input.nextInt();
+            if (year < 2005){
+                System.out.println("O funcionário entrou no ano de 2005. Digite um ano válido");
+                year = input.nextInt();
+            }
+            
+            if (year == 2005){
+                System.out.println("O salário do funcionário é R$ 1000.");
+        }
+        
+        int dateDiff = year - 2006;
+        System.out.println("O salário do funcionário é R$ "+ raisePercent(dateDiff));
+    }
+}

@@ -1,0 +1,48 @@
+package formacaofcamaraex6;
+
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author cipri
+ */
+public class TesteRetangulo {
+    
+    public static int menu(){
+        String menu = "Selecione a opção que deseja: \n";
+        menu += " 1 - Calcular retângulo \n";
+        menu += " 2 - Sair ";
+        
+        int option = Integer.parseInt(JOptionPane.showInputDialog(menu));
+        
+        return option;
+    }
+    
+    public static void main (String args[]){
+        
+        int option = menu();
+        
+        while(option != 2){
+            switch (option){
+                
+                case 1:
+                    double height = Double.parseDouble(JOptionPane.showInputDialog("Digite a altura: "));
+                    double width = Double.parseDouble(JOptionPane.showInputDialog("Digite a comprimento: "));
+                    
+                    Retangulo rt = new Retangulo(height, width);
+                    
+                    String result = " A área do retângulo e de " +rt.calculateArea(height, width) + "\n";
+                    result += "Seu perímetro é de "+ rt.calculatePerimeter(height, width);
+                    
+                    JOptionPane.showMessageDialog(null,result);
+                    
+                    break;
+                    
+                default:
+                       JOptionPane.showMessageDialog(null,"Não há essa opção no menu. Favor digitar uma opção correta"); 
+            }        
+            
+            option = menu();
+        }
+    }    
+}
